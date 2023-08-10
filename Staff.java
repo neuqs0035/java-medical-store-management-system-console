@@ -1,6 +1,7 @@
 // staff.java
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -245,4 +246,59 @@ public class Staff {
         }
 
     }
+
+    void changeUsername(String oldUsername, String newUsername, String password) {
+        File f = new File("StaffLoginId.csv");
+    
+        try {
+            Scanner scan = new Scanner(f);
+            ArrayList<String> useridPassword = new ArrayList<>();
+            boolean found = false;
+            int rval = 0;
+    
+            while (scan.hasNextLine()) {
+                String data = scan.nextLine();
+                String userpass[] = data.split(",");
+    
+                // If username matched
+                if (userpass[0].equals(oldUsername)) {
+    
+                    // If password matched
+                    if (userpass[1].equals(password)) {
+                        data = newUsername + "," + password;
+                        found = true;
+                        rval = 1;
+                    } else {
+                        System.out.println("\nPassword Is Incorrect");
+                    }
+                }
+    
+                useridPassword.add(data);
+            }
+    
+            if (!found) {
+                System.out.println("\nUsername Not Found"); // Username not found
+            }
+    
+            scan.close();
+    
+            if (rval == 1) {
+                try {
+                    FileWriter fw = new FileWriter("StaffLoginId.csv");
+                    for (String data : useridPassword) {
+                        fw.write(data + "\n");
+                    }
+                    fw.close();
+
+                    System.out.println("\nUsername Changed Successfully");
+                } catch (IOException e) {
+                    System.out.println("\nIOException Occured");
+                }
+            }
+    
+        } catch (FileNotFoundException e) {
+            System.out.println("\nFileNotFoundException Occured");// File Not Found
+        }
+    }
+
 }

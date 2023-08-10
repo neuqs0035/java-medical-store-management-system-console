@@ -2,7 +2,10 @@
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 class Stock {
     
@@ -52,7 +55,7 @@ class Stock {
             return -1;
         }
     }
-    
+
     void showallmed(){
         File f = new File("StockData.csv");
 
@@ -85,6 +88,63 @@ class Stock {
 
         } catch (FileNotFoundException e) {
             System.out.println("\nFILE NOT FOUND - ");
+        }
+    }
+    int updateQuantityFromBill(String medName,String power,String purchaseQuantity){
+        
+        File f = new File("StockData.csv");
+
+        try {
+            
+            Scanner scan = new Scanner(f);
+
+            ArrayList<String> stockData = new ArrayList<>();
+            
+            while(scan.hasNextLine()){
+                
+                String meddata = scan.nextLine();
+                String meddataarr[] = meddata.split(",");
+
+                if(medName.equals(meddataarr[1]) && power.equals(meddataarr[2])){
+
+                    try {
+                        
+                        int remainingQuantity = Integer.parseInt(meddataarr[3]) - Integer.parseInt(purchaseQuantity);
+                        String remaining = remainingQuantity + "";
+
+                        String updatedMedData = meddataarr[0] + "," + meddataarr[1] + "," + meddataarr[2] + "," + remainingQuantity + "," + meddataarr[4];
+
+                        stockData.add(updatedMedData);
+                    } catch (NumberFormatException e) {
+                        return -2;
+                    }
+                }
+                else{
+
+                    stockData.add(meddata);
+                }
+            }
+
+            try {
+
+                FileWriter fw = new FileWriter("StockData.csv");
+                fw.write("");
+            
+                for (String medData : stockData) {
+                        fw.append(medData + "\n");
+                }
+
+                fw.close();
+
+                return 1;
+
+            } catch (IOException e) {
+                return -2;
+            }
+           
+
+        } catch(FileNotFoundException e) {
+            return -1;
         }
     }
 }

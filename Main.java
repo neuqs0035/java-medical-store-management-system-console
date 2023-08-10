@@ -26,11 +26,7 @@ public class Main{
 
             if(choice == 1){
                 login l = new login();
-
-             
-
-                
-                    
+   
                     System.out.println("\n!- ADMIN LOGIN -!");
 
                     System.out.print("\nUserID : ");
@@ -344,8 +340,7 @@ public class Main{
             else if(choice == 2){
 
                 login l = new login();
-
-                
+                Staff stf = new Staff();
 
                     System.out.println("\n!- STAFF LOGIN -!");
                     System.out.print("\nUserID : ");
@@ -366,6 +361,9 @@ public class Main{
                             System.out.println("\n1) Generate Bill");
                             System.out.println("2) Add To Cart");
                             System.out.println("3) Clear Cart");
+                            System.out.println("4) Check Cart Items");
+                            System.out.println("5) Change Username");
+                            System.out.println("6) Change Password");
                             System.out.println("0) Exit");
                             
                             System.out.print("\n_ : ");
@@ -419,13 +417,17 @@ public class Main{
                                             while (scf2.hasNextLine()) {
                                                 String data = scf2.nextLine();
                                                 String[] cartdata = data.split(",");
+
+                                                Stock stk = new Stock();
+                                                stk.updateQuantityFromBill(cartdata[0],cartdata[1],cartdata[3]);
+
                                                 int medTotalPrice = Integer.parseInt(cartdata[3]) * Integer.parseInt(cartdata[2]);
                                                 total += medTotalPrice;
                                                 System.out.println(String.format("%-29s | %-13s | %-13s | %d", cartdata[0], cartdata[1], cartdata[3], medTotalPrice));
                                                 Customer cstmr = new Customer();
                                                 String medTPrice = "" + medTotalPrice;
                                                 cstmr.addData(customerName, customerNumber, cartdata[0], cartdata[1], cartdata[2],medTPrice);
-                                                
+
                                             }
                                             System.out.println("\n\nTotal = " + total + " rs\n");
                                             System.out.println("---------------------------------------------------------------------");
@@ -496,9 +498,13 @@ public class Main{
                                                 fulldata.add(medicine); 
                                             }  
                                         }
+                                        else{
+                                            System.out.println("\nMedicine Not Found - ");
+                                            break;
+                                        }
                                     }
-
-                                    if(flag){
+                                    if (flag) {
+                                        
                                         System.out.print("\nEnter Medicine Number : ");
                                         int medchoice = scan.nextInt();
 
@@ -519,17 +525,38 @@ public class Main{
                                                 String reply = scan.next();
 
                                                 if(reply.toLowerCase().equals("y")){
-                                                    FileWriter fw = new FileWriter("cartdata.csv",true);
-                                                    fw.append(d[1] + "," + d[2] + "," + d[4] + "," + Quantity + "\n");
-                                                    fw.close();
+
+                                                    try {
+                                                        
+                                                        int qntty = Integer.parseInt(d[3]);
+
+                                                        if(Quantity>qntty){
+
+                                                            System.out.println("\nQuantity In Stock Is Less Than Given");
+                                                        }
+                                                        else{
+
+                                                            FileWriter fw = new FileWriter("cartdata.csv",true);
+                                                            fw.append(d[1] + "," + d[2] + "," + d[4] + "," + Quantity + "\n");
+                                                            fw.close();
+                                                        }
+
+                                                    } catch (NumberFormatException e) {
+                                                        
+                                                    }    
                                                 }
-                                                else{
-                                                    break;
+                                                else if(reply.toLowerCase().equals("n")){
+                                                    System.out.println("\nAdd To Cart Canceled - ");
+                                                   
+                                                }
+                                               else{
+                                                    System.out.println("\nInvalid Input , Enter 'y' or 'n'");
                                                 }
                                             }
                                             c1++;
                                         }
                                     }
+                                    
                                 } catch (FileNotFoundException e) {
 
                                     System.out.println("File Not Found");
@@ -543,13 +570,16 @@ public class Main{
                                 s = scan.next();
 
                                 if(s.toLowerCase().equals("n")){
-                                    System.out.println("EXITED ADD TO CART MENU");
+                                    System.out.println("\nSearch Another Medicine Canceled - ");
+                                }
+                                else{
+                                    System.out.println("\nInvalid Input , Enter 'y' or 'n'");
                                 }
 
                                 } while (!s.toLowerCase().equals("n"));
                             }
                             else if(choice21 == 3){
-                                System.out.println("\nClear Cart");
+                                System.out.println("\n!! -- Clear Cart -- !!");
 
                                 File f = new File("cartdata.csv");
 
@@ -572,6 +602,28 @@ public class Main{
                                     System.out.println("Something Went Wrong - ");
 
                                 }
+                            }
+                            else if(choice21 == 4){
+                                System.out.println("\n!! -- Check Cart Items -- !!");
+                            }
+                            else if(choice21 == 5){
+
+                                System.out.println("\n!! -- Change Usename -- !!");
+
+                                System.out.print("\nEnter Old Username : ");
+                                String OldUsername = scan.next();
+
+                                System.out.print("\nEnter New Username : ");
+                                String newUsername = scan.next();
+
+                                System.out.print("\nEnter Password : ");
+                                String password = scan.next();
+
+                               stf.changeUsername(OldUsername, newUsername, password);
+      
+                            }
+                            else if(choice21 == 6){
+                                System.out.println("\n!! -- Change Password -- !!");
                             }
                             else if(choice21 == 0){
                                 System.out.println("\nExited Staff Menu - ");

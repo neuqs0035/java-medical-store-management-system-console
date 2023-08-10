@@ -35,25 +35,25 @@ class Customer{
 	}
 
 	void printData() {
-    File f = new File("CustomerData.csv");
+		File f = new File("CustomerData.csv");
 
-    try {
-        Scanner scf = new Scanner(f);
+		try {
+			Scanner scf = new Scanner(f);
 
-        if (!scf.hasNextLine()) {
-            System.out.println("\nCustomer Data File Is Empty");
-        } else {
-            System.out.println("\nCustomer Data");
-            System.out.println("\n" + String.format("Customer Name          | Customer Number  | Medicine Name      | Power     | Quantity    | Total Price   | Time \n"));
+			if (!scf.hasNextLine()) {
+				System.out.println("\nCustomer Data File Is Empty");
+			} else {
+				System.out.println("\nCustomer Data");
+				System.out.println("\n" + String.format("Customer Name          | Customer Number  | Medicine Name      | Power     | Quantity    | Total Price   | Time \n"));
 
-            while (scf.hasNextLine()) {
-                String customerData = scf.nextLine();
-                String data[] = customerData.split(",");
-                System.out.println(String.format("%-22s | %-16s | %-18s | %-9s | %-11s | %-13s | %-10s", data[0], data[1], data[2], data[3], data[4], data[5], data[6]));
-            }
-        }
-    } catch (FileNotFoundException e) {
-        System.out.println("\nFile Not Found");
-    }
+				while (scf.hasNextLine()) {
+					String customerData = scf.nextLine();
+					String data[] = customerData.split(",");
+					System.out.println(String.format("%-22s | %-16s | %-18s | %-9s | %-11s | %-13s | %-10s", data[0], data[1], data[2], data[3], data[4], data[5], data[6]));
+				}
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println("\nFile Not Found");
+		}
 }
 }

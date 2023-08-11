@@ -648,6 +648,17 @@ public class Main{
                             }
                             else if(choice21 == 6){
                                 System.out.println("\n!! -- Change Password -- !!");
+
+                                System.out.print("\nEnter Userid : ");
+                                String userid = scan.next();
+
+                                System.out.print("\nEnter Old Password : ");
+                                String oldPassword = scan.next();
+
+                                System.out.print("\nEnter New Password : ");
+                                String newPassword = scan.next();
+
+                                stf.changePassword(userid, oldPassword, newPassword);
                             }
                             else if(choice21 == 0){
                                 System.out.println("\nExited Staff Menu - ");

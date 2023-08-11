@@ -301,4 +301,62 @@ public class Staff {
         }
     }
 
+    void changePassword(String userid, String oldPassword, String newPassword) {
+        File f = new File("StaffLoginId.csv");
+    
+        try {
+            Scanner scf = new Scanner(f);
+    
+            if (!scf.hasNextLine()) {
+                System.out.println("\nNo Data Found - ");
+            } else {
+                boolean flag = false;
+                ArrayList<String> staffLoginData = new ArrayList<>();
+    
+                while (scf.hasNextLine()) {
+                    String idpass = scf.nextLine();
+                    String useridpass[] = idpass.split(",");
+    
+                    if (useridpass[0].equals(userid)) {
+                        flag = true;
+    
+                        if (useridpass[1].equals(oldPassword)) {  // Corrected this line
+                            String newData = useridpass[0] + "," + newPassword + "\n";
+                            staffLoginData.add(newData);
+                        } else {
+                            System.out.println("\nOld Password Is Wrong - ");
+                            return;  // Added a return statement
+                        }
+                    } else {
+                        staffLoginData.add(idpass + "\n");
+                    }
+                }
+    
+                if (!flag) {
+                    System.out.println("\nUser Not Found - ");
+                } else {
+                    try {
+                        FileWriter fw = new FileWriter("StaffLoginId.csv");
+                        fw.write("");  // Clearing the file content
+                        fw.close();
+    
+                        FileWriter fw2 = new FileWriter("StaffLoginId.csv", true);
+    
+                        for (String data : staffLoginData) {
+                            fw2.write(data);  // Writing data without newline here
+                        }
+                        fw2.close();
+    
+                        System.out.println("\nPassword Changed Successfully - ");
+                    } catch (IOException e) {
+                        System.out.println("\nIOException Occurred - ");
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("\nFile Not Found Exception Occurred - ");
+        }
+    }
+    
+
 }

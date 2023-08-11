@@ -498,10 +498,7 @@ public class Main{
                                                 fulldata.add(medicine); 
                                             }  
                                         }
-                                        else{
-                                            System.out.println("\nMedicine Not Found - ");
-                                            break;
-                                        }
+                                        
                                     }
                                     if (flag) {
                                         
@@ -555,6 +552,9 @@ public class Main{
                                             }
                                             c1++;
                                         }
+                                    }
+                                    else{
+                                        System.out.println("\n Medicine Not Found - ");
                                     }
                                     
                                 } catch (FileNotFoundException e) {

@@ -1,0 +1,9 @@
+# Clear Customer Data Option In Admin Menu
+# Change Password In Staff Menu
+# Change Username In Admin Menu
+# Change Password In Admin Menu
+# Check Customer Data : Search By Name
+# Check Customer Data : Search By Mobile Number
+# Check Customer Data : Search By Medicine Name
+# Change Login Code : Iterate Through Each Id Pass For Admin
+# Change Login Code : Iterate Through Each Id Pass For Staff

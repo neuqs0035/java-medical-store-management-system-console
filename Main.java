@@ -53,6 +53,8 @@ public class Main{
                             System.out.println("5) CHECK CUSTOMER DATA");
                             System.out.println("6) CHECK STOCKS DATA");
                             System.out.println("7) CLEAR ALL CUSTOMER DATA");
+                            System.out.println("8) CHANGE USERNAME");
+                            System.out.println("9) CHANGE PASSWORD");
                             System.out.println("0) BACK TO MAIN MENU");
 
                             System.out.print("\n_ : ");
@@ -347,6 +349,41 @@ public class Main{
                                 }
 
                             }
+
+                            else if(choice1 == 8){
+                                System.out.println("\n!! - CHANGE USERNAME - !!");
+
+                                Admin admin = new Admin();
+
+                                System.out.print("\nEnter Old Username : ");
+                                String OldUsername = scan.next();
+
+                                System.out.print("\nEnter New Username : ");
+                                String newUsername = scan.next();
+
+                                System.out.print("\nEnter Password : ");
+                                String password = scan.next();
+
+                               admin.changeUsername(OldUsername, newUsername, password);                                
+                            }
+
+                            else if(choice1 == 9){
+
+                                Admin admin = new Admin();
+
+                                System.out.println("\n!! - CHANGE PASSWORD - !!");
+
+                                System.out.print("\nEnter Username : ");
+                                String username = scan.next();
+
+                                System.out.print("\nEnter Old Password : ");
+                                String oldPassword = scan.next();
+
+                                System.out.print("\nEnter New Password : ");
+                                String newPassword = scan.next();
+
+                               admin.changePassword(username, oldPassword, newPassword);    
+                            }
                             else if(choice1 == 0){
                                 System.out.println("\nExited Admin Menu");
                             }
@@ -447,10 +484,13 @@ public class Main{
 
                                                 int medTotalPrice = Integer.parseInt(cartdata[3]) * Integer.parseInt(cartdata[2]);
                                                 total += medTotalPrice;
+
                                                 System.out.println(String.format("%-29s | %-13s | %-13s | %d", cartdata[0], cartdata[1], cartdata[3], medTotalPrice));
+
                                                 Customer cstmr = new Customer();
                                                 String medTPrice = "" + medTotalPrice;
-                                                cstmr.addData(customerName, customerNumber, cartdata[0], cartdata[1], cartdata[3],medTPrice);
+                                                
+                                                cstmr.addData(customerName.toLowerCase(), customerNumber, cartdata[0], cartdata[1], cartdata[3],medTPrice);
 
                                             }
                                             System.out.println("\n\nTotal = " + total + " rs\n");

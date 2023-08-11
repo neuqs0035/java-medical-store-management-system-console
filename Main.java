@@ -52,6 +52,7 @@ public class Main{
                             System.out.println("4) REMOVE STAFF MEMBER");
                             System.out.println("5) CHECK CUSTOMER DATA");
                             System.out.println("6) CHECK STOCKS DATA");
+                            System.out.println("7) CLEAR ALL CUSTOMER DATA");
                             System.out.println("0) BACK TO MAIN MENU");
 
                             System.out.print("\n_ : ");
@@ -323,6 +324,29 @@ public class Main{
 
                                 } while (choice17!=0);
                             }
+                            else if(choice1 == 7){
+
+                                System.out.println("\n!! - CLEAR ALL CUSTOMERS DATA - !!");
+
+                                System.out.print("\nAre You Sure You Wanna Clear All Customer Data ? (Y/n) : ");
+                                String reply = scan.next();
+
+                                if(reply.toLowerCase().equals("y")){
+                                    
+                                    Customer cstmr = new Customer();
+                                    cstmr.clearData();
+
+                                }
+                                else if(reply.toLowerCase().equals("n")){
+
+                                    System.out.println("\nClearing All Customers Data Operation Canceled - ");
+                                }
+                                else{
+
+                                    System.out.println("\nInvalid Input , Enter 'Y' or 'n'");
+                                }
+
+                            }
                             else if(choice1 == 0){
                                 System.out.println("\nExited Admin Menu");
                             }
@@ -426,7 +450,7 @@ public class Main{
                                                 System.out.println(String.format("%-29s | %-13s | %-13s | %d", cartdata[0], cartdata[1], cartdata[3], medTotalPrice));
                                                 Customer cstmr = new Customer();
                                                 String medTPrice = "" + medTotalPrice;
-                                                cstmr.addData(customerName, customerNumber, cartdata[0], cartdata[1], cartdata[2],medTPrice);
+                                                cstmr.addData(customerName, customerNumber, cartdata[0], cartdata[1], cartdata[3],medTPrice);
 
                                             }
                                             System.out.println("\n\nTotal = " + total + " rs\n");

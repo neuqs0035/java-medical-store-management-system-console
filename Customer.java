@@ -55,5 +55,21 @@ class Customer{
 		} catch (FileNotFoundException e) {
 			System.out.println("\nFile Not Found");
 		}
-}
+	}
+
+	void clearData(){
+		try {
+
+			FileWriter fw = new FileWriter("CustomerData.csv");
+
+			fw.write("");
+			fw.close();
+
+			System.out.println("\nAll Customers Data Cleared Successfully");			
+			
+		} catch (IOException e) {
+			
+			System.out.println("\nIOException Occured");
+		}
+	}
 }

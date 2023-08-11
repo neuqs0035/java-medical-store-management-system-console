@@ -1,6 +1,6 @@
 rewine pharmaceutical,paracetamol,325,100,5
 rewine pharmaceutical,paracetamol,500,100,5
-rewine pharmaceutical,paracetamol,650,100,5
+rewine pharmaceutical,paracetamol,650,80,5
 aptus pharma pvt.ltd.,koltus-3d,300,100,10
 gmp pharma pvt.ltd.,monek-l,250,50,2
 aptus pharma pvt.ltd.,aptipred-8,300,100,10
@@ -16,7 +16,7 @@ cipla,omnacortil,50,10,500
 cipla,brufen,400,15,50
 nuvista,dolo,200,10,100
 nuvista,dolo,400,10,200
-nuvista,dolo,650,10,500
+nuvista,dolo,650,5,500
 rizole,clotrimazole,200,20,250
 aptus,montair,450,10,300
 aptus,rumanil,500,10,250

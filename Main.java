@@ -278,8 +278,64 @@ public class Main{
                                 } 
                             }
                             else if(choice1 == 5){
+
+                                int choice15 = -1;
+
                                 Customer cstmr = new Customer();
-                                cstmr.printData();
+
+                                do {
+
+                                    System.out.println("\n!! - CHECK CUSTOMERS DATA - !!");
+
+                                    System.out.println("\n1) Show All");
+                                    System.out.println("2) Search By Name");
+                                    System.out.println("3) Search By Mobile Number");
+                                    System.out.println("4) Search By Medicine Name");
+                                    System.out.println("0) Exit");
+
+                                    System.out.print("\n_ : ");
+
+                                    choice15 = scan.nextInt(); 
+
+                                    if(choice15 == 1){
+
+                                        System.out.println("\n! - SHOW ALL CUSTOMERS DATA - !");
+                                        cstmr.printData();
+                                    }
+
+                                    else if(choice15 == 2){
+                                        
+                                        System.out.println("\n! - SEARCH CUSTOMERS DATA BY NAME - !");
+
+                                        System.out.print("\nEnter Name : ");
+
+                                        String name= scan.nextLine();
+                                        name+=scan.nextLine();
+
+                                        cstmr.searchData(name,"name");
+                                    }
+
+                                    else if(choice15 == 3){
+
+                                        System.out.println("\n! - SEARCH CUSTOMERS DATA BY MOBILE NUMBER");
+
+                                        System.out.print("\nEnter Mobile Number : ");
+
+                                        String mobileNumber = scan.next();
+                                        
+
+                                        cstmr.searchData(mobileNumber,"mobile_number");
+                                    }
+
+                                    else if(choice15 == 0){
+                                        System.out.println("\nCheck Customer Data Exited - ");
+                                    }
+                                    else{
+                                        System.out.println("\nInvalid Input - ");
+                                    }
+                                    
+                                } while (choice15!=0);
+                                
                             }
                             else if(choice1 == 6){
 
@@ -467,15 +523,16 @@ public class Main{
                                             customerName += scan.nextLine();
 
                                             System.out.print("Enter Customer Number: ");
-                                            String customerNumber = scan.next();                                                        
+                                            String customerNumber = scan.next();  
+
                                             System.out.println("\n---------------------------------------------------------------------");
-                                            System.
-                                            out.println(String.format("\n %45s","KRISHNA MEDICAL STORE"));
+                                            System.out.println(String.format("\n %45s","KRISHNA MEDICAL STORE"));
 
                                             System.out.println(String.format("\nName: %-36s Number: %s", customerName, customerNumber));
                                             System.out.println("\n" + String.format("Medicine Name                 | Power         | Quantity      | Price\n"));
                                             
                                             while (scf2.hasNextLine()) {
+
                                                 String data = scf2.nextLine();
                                                 String[] cartdata = data.split(",");
 
@@ -489,10 +546,10 @@ public class Main{
 
                                                 Customer cstmr = new Customer();
                                                 String medTPrice = "" + medTotalPrice;
-                                                
-                                                cstmr.addData(customerName.toLowerCase(), customerNumber, cartdata[0], cartdata[1], cartdata[3],medTPrice);
 
+                                                cstmr.addData(customerName.toLowerCase(), customerNumber, cartdata[0], cartdata[1], cartdata[3],medTPrice);
                                             }
+
                                             System.out.println("\n\nTotal = " + total + " rs\n");
                                             System.out.println("---------------------------------------------------------------------");
                                             FileWriter fw = new FileWriter("cartdata.csv");
@@ -501,6 +558,7 @@ public class Main{
                                             fw.close();
 
                                         }
+
                                         else if(reply.toLowerCase().equals("n")){
                                             System.out.print("\nExited Generate Bill - \n");
                                         }

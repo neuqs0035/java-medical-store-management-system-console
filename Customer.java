@@ -72,4 +72,71 @@ class Customer{
 			System.out.println("\nIOException Occured");
 		}
 	}
+
+	void searchData(String searchValue,String byName){
+
+		File f = new File("CustomerData.csv");
+
+		try {
+
+			Scanner scn = new Scanner(f);
+
+			if(!scn.hasNextLine()){
+
+				System.out.println("\nFile Is Empty - ");
+			}
+
+			else if( byName.equals("name")){
+
+				System.out.println("\n" + String.format("Customer Name          | Customer Number  | Medicine Name      | Power     | Quantity    | Total Price   | Time \n"));
+
+				boolean flag = false;
+
+				while(scn.hasNextLine()){
+					String data = scn.nextLine();
+					String cstmrData[] = data.split(",");
+
+					if( cstmrData[0].toLowerCase().contains(searchValue.toLowerCase())){
+
+						flag = true;
+
+						System.out.println(String.format("%-22s | %-16s | %-18s | %-9s | %-11s | %-13s | %-10s", cstmrData[0], cstmrData[1], cstmrData[2], cstmrData[3], cstmrData[4], cstmrData[5], cstmrData[6]));
+					}
+				}
+				
+				if(!flag){
+
+					System.out.println("\nNo Data Found - ");
+				}
+			}
+
+			else if( byName.equals("mobile_number")){
+
+				System.out.println("\n" + String.format("Customer Name          | Customer Number  | Medicine Name      | Power     | Quantity    | Total Price   | Time \n"));
+
+				boolean flag = false;
+				while(scn.hasNextLine()){
+					String data = scn.nextLine();
+					String cstmrData[] = data.split(",");
+
+					if( cstmrData[1].equals(searchValue)){
+
+						flag = true;
+
+						System.out.println(String.format("%-22s | %-16s | %-18s | %-9s | %-11s | %-13s | %-10s", cstmrData[0], cstmrData[1], cstmrData[2], cstmrData[3], cstmrData[4], cstmrData[5], cstmrData[6]));
+					}
+				}
+				
+				if(!flag){
+
+					System.out.println("\nNo Data Found - ");
+				}				
+
+			}
+	
+		} catch (FileNotFoundException e) {
+
+			System.out.println("\nFile Not Found Exception Occured - ");
+		}
+	}
 }

@@ -5,3 +5,4 @@
 # Change Login Code : Iterate Through Each Id Pass For Staff
 # Check If Username Is Already In User Or Not For Staff
 # Check If Username Is Already In User Or Not For Admin
+# Split The Word In Search By Name In Check Customer Data And Check Each Word If It Exists In File

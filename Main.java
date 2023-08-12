@@ -326,6 +326,18 @@ public class Main{
 
                                         cstmr.searchData(mobileNumber,"mobile_number");
                                     }
+                                    
+                                    else if(choice15 == 4){
+
+                                        System.out.println("\n! - SEARCH CUSTOMERS DATA BY MEDICINE NAME");
+
+                                        System.out.print("\nEnter Medicine Name : ");
+
+                                        String medName = scan.next();
+                                        
+
+                                        cstmr.searchData(medName,"medicine_name");
+                                    }
 
                                     else if(choice15 == 0){
                                         System.out.println("\nCheck Customer Data Exited - ");

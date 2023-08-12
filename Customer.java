@@ -133,6 +133,30 @@ class Customer{
 				}				
 
 			}
+
+			else if( byName.equals("medicine_name")){
+
+				System.out.println("\n" + String.format("Customer Name          | Customer Number  | Medicine Name      | Power     | Quantity    | Total Price   | Time \n"));
+
+				boolean flag = false;
+				while(scn.hasNextLine()){
+					String data = scn.nextLine();
+					String cstmrData[] = data.split(",");
+
+					if( cstmrData[2].toLowerCase().contains(searchValue.toLowerCase())){
+
+						flag = true;
+
+						System.out.println(String.format("%-22s | %-16s | %-18s | %-9s | %-11s | %-13s | %-10s", cstmrData[0], cstmrData[1], cstmrData[2], cstmrData[3], cstmrData[4], cstmrData[5], cstmrData[6]));
+					}
+				}
+				
+				if(!flag){
+
+					System.out.println("\nNo Data Found - ");
+				}				
+
+			}
 	
 		} catch (FileNotFoundException e) {
 

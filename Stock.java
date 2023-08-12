@@ -140,8 +140,7 @@ class Stock {
 
             } catch (IOException e) {
                 return -2;
-            }
-           
+            }      
 
         } catch(FileNotFoundException e) {
             return -1;

@@ -1,8 +1,8 @@
-# Check Customer Data : Search By Name
-# Check Customer Data : Search By Mobile Number
-# Check Customer Data : Search By Medicine Name
+# Check Cart Items In Staff Menu
 # Change Login Code : Iterate Through Each Id Pass For Admin
 # Change Login Code : Iterate Through Each Id Pass For Staff
 # Check If Username Is Already In User Or Not For Staff
 # Check If Username Is Already In User Or Not For Admin
 # Split The Word In Search By Name In Check Customer Data And Check Each Word If It Exists In File
+# While Input Choice Manage Exception ( if by mistake string entered )
+# Remove Medicine Option In Admin Menu : ALL OR BY POWER

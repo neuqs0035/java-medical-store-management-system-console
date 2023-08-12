@@ -739,6 +739,37 @@ public class Main{
                             }
                             else if(choice21 == 4){
                                 System.out.println("\n!! -- Check Cart Items -- !!");
+
+                                File f = new File("CartData.csv");
+
+                                try {
+
+                                    Scanner scn = new Scanner(f);
+
+                                    if(!scn.hasNextLine()){
+
+                                        System.out.println("\nCart Is Empty - ");
+                                    }
+
+                                    else{
+
+                                        System.out.println("\nCart Iems :-\n");
+
+                                        while(scn.hasNextLine()){
+                                            String cartItems = scn.nextLine();
+                                            String cartData[] = cartItems.split(",");
+
+                                            String formattedOutput = String.format("Name: %-20s | Power: %-10s | Price Per Tablet: %-10s | Quantity: %s",
+                                                    cartData[0], cartData[1], cartData[2], cartData[3]);
+
+                                            System.out.println(formattedOutput);
+                                        }
+                                    }
+
+                                } catch (FileNotFoundException e) {
+                                    
+                                    System.out.println("\nFile Not Found Exception Occured - ");
+                                }
                             }
                             else if(choice21 == 5){
 

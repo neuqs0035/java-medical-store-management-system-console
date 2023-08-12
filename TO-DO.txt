@@ -1,4 +1,3 @@
-# Check Cart Items In Staff Menu
 # Change Login Code : Iterate Through Each Id Pass For Admin
 # Change Login Code : Iterate Through Each Id Pass For Staff
 # Check If Username Is Already In User Or Not For Staff
